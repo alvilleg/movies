@@ -1,6 +1,9 @@
 <?php
+	function __autoload($class_name) {
+    	include $class_name . '.php';
+	}
 
-echo "Hello World!";
+	echo "Hello World!";
 
  $apiKey = "f09d819ed8472a76885ae1c995eeb878";
 
