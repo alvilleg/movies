@@ -50,7 +50,7 @@ class Caller{
     			curl_setopt($handle, CURLOPT_CUSTOMREQUEST, 'DELETE');
     			break;
   		}
-
+      echo print_r($handle);
   		$response = curl_exec($handle);
   		$status = curl_getinfo($handle, CURLINFO_HTTP_CODE);
   		
@@ -64,6 +64,16 @@ class Caller{
 	function doPost($url,$data = ""){
 		return $this->executeRest($url,'POST',$data);
 	}
+
+  /*
+   * Execute the GET method  
+   */ 
+  function doGet($url,$data = ""){
+    echo $url."<br/>";
+    echo $data."<br/>";
+    
+    return $this->executeRest($url."?".$data,'GET');
+  }
 
 }
 ?>
