@@ -1,5 +1,6 @@
-<?php
 
+<?php
+ 
 class Caller{
 
 	function __construct(){
@@ -50,12 +51,9 @@ class Caller{
     			curl_setopt($handle, CURLOPT_CUSTOMREQUEST, 'DELETE');
     			break;
   		}
-      echo print_r($handle);
   		$response = curl_exec($handle);
   		$status = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-  		
-  		$respObj = json_decode(utf8_encode($response),true);
-  		return $respObj;
+  		return $response;
 	}
 	
 	/*
@@ -69,9 +67,6 @@ class Caller{
    * Execute the GET method  
    */ 
   function doGet($url,$data = ""){
-    echo $url."<br/>";
-    echo $data."<br/>";
-    
     return $this->executeRest($url."?".$data,'GET');
   }
 
