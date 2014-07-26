@@ -67,6 +67,7 @@ class Caller{
    * Execute the GET method  
    */ 
   function doGet($url,$data = ""){
+    //echo $url."?".$data;
     return $this->executeRest($url."?".$data,'GET');
   }
 

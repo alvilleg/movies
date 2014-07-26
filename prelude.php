@@ -15,11 +15,19 @@
     <script src="./js/dropdown.js"></script>
     <script src="./js/suggestion-controller.js"></script>
     <style>
-        body{
-            position:relative;
-            left: 5em;
-            top:10em;
+        
+        div#profile{
         }
 
+        div#profile table tr td span{
+            font-weight: bold;
+        }
+
+        .header .brand img {
+            margin-top:5px;
+            height: 30px;
+        }
+
+        
     </style>
 </head>    

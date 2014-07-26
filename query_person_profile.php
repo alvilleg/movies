@@ -4,12 +4,10 @@
 	}
 
  $api_key = "f09d819ed8472a76885ae1c995eeb878";
- $query = $_GET['q'];
- $page = $_GET['page'];
+ $id = $_GET['id'];
  // Create the client
  $client = new client();
  $client->set_api_key($api_key);
- $result = $client->get_movies($query,$page);
- echo $result;
-
-?>
+ $result_person = $client->get_person_profile($id);
+ echo $result_person;
+ ?>

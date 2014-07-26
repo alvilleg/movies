@@ -7,10 +7,10 @@ class Client{
 	// Gets a list of movies with the keywork,
 	// this return the first page, and the number of pages
 	// also number of results by page
-	function get_movies($keyword){
+	function get_movies($keyword,$page){
 		$url = "http://api.themoviedb.org/3/search/movie";
 		$caller = new caller();
-		$req_data =  'query='.urlencode($keyword).'&api_key='.$this->api_key; //.'&page=5';
+		$req_data =  'query='.urlencode($keyword).'&api_key='.$this->api_key.'&page='.$page;
 		$result = $caller->doGet($url,$req_data);
 		return $result;
 	}
@@ -64,6 +64,14 @@ class Client{
 
 	function get_person_movies($id){
 		$url = "http://api.themoviedb.org/3/person/".$id."/movie_credits";
+		$caller = new caller();
+		$req_data =  'api_key='.$this->api_key; //.'&page=5';
+		$result = $caller->doGet($url,$req_data);
+		return $result;
+	}	
+
+	function get_person_profile($id){
+		$url = "http://api.themoviedb.org/3/person/".$id;
 		$caller = new caller();
 		$req_data =  'api_key='.$this->api_key; //.'&page=5';
 		$result = $caller->doGet($url,$req_data);
