@@ -19,14 +19,14 @@
 	<div ng-hide="hideMovies">
 		<table class="table table-striped">
 		<tr>
-				<td>&nbsp;</td>
-				<td >Release date</td>
-				<td >Title </td>
+				<td >&nbsp; </td>
+				<td ><a href="" ng-click="predicate = 'release_date'; reverse=!reverse">Release date</a></td>
+				<td ><a href="" ng-click="predicate = 'name'; reverse=!reverse">Title</a> </td>
 				<td >Character </td>
 				<td >&nbsp;</td>
 		<tr>
 
-		<tr class="movies" ng-repeat="movie in movies.cast" >
+		<tr class="movies" ng-repeat="movie in movies.cast | orderBy:predicate:reverse" >
 			<td>{{$index}}</td>	
 			<td >{{movie.release_date}} &nbsp;</td>
 			<td ><a href="#{{movie.id}}">{{movie.title}}&nbsp;</a> </td>
