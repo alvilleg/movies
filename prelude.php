@@ -12,6 +12,7 @@
     <script src="./js/angular-route.js"></script>
     <script src="./js/ui-bootstrap-0.11.0.js"></script>
     <script src="./js/typeahead.js"></script>
+    <script src="./js/dropdown.js"></script>
     <script src="./js/suggestion-controller.js"></script>
     <style>
         body{

@@ -5,11 +5,11 @@
 
 <body>
 <div ng-controller="SuggestionController">
-	<input autocomplete="off" name="q" ng-model="query" ng-keyup="13: :getSuggestions();" />
+	<input autocomplete="off" name="q" ng-model="query" ng-keyup="getSuggestions();" />
 
 	<ul ng-hide="hideSuggestions" style="{{suggestionStyle}}" id="suggestions" >
 		<li class="suggestion" ng-repeat="suggestion in suggestions.results" 
-			ng-click="showMovies(suggestion.id,suggestion.name);" role="option"
+			ng-click="showMovies(suggestion.id);" role="option"
 			>
 			<a href="#">{{suggestion.name}} {{suggestion.id}} </a>
 		</li>	
