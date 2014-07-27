@@ -8,7 +8,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <title>AngularJS Plunker</title>
+    <title>Movie Search</title>
     <link rel="stylesheet" href="./css/style.css">
 
     <link href="./css/bootstrap.min.css" rel="stylesheet" />
