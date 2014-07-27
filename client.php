@@ -35,8 +35,12 @@ class Client{
 	
 
 	// return the movie poster URL
-	function get_movie_details_URL($movie){
-		
+	function get_movie_details($id){
+		$url = "http://api.themoviedb.org/3/movie/".$id;
+		$caller = new caller();
+		$req_data =  'api_key='.$this->api_key; //.'&page=5';
+		$result = $caller->doGet($url,$req_data);
+		return $result;
 	}
 
 

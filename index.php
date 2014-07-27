@@ -24,11 +24,48 @@
 </header>	
 
 <h1>Movie search</h1>
+
+
+
+
 <div ng-controller="SuggestionController">
+
+	<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{items.title}}</h3>
+        </div>
+        <div class="modal-body">
+        	<img src="http://image.tmdb.org/t/p/w92{{items.poster_path}}" />
+        	<br/>
+        	<span ng-if="items.tagline"> "{{items.tagline}}"</span>
+        	<br/>
+           {{items.overview}}
+           <br>
+           <br>
+           
+           <b>Genres:</b> 
+           <span ng-repeat="gen in items.genres">{{gen.name}}<span ng-show=" !$last">,</span> 
+           </span>
+           
+           <br/>
+           <br/>
+           
+           <b>Produced by:</b> 
+           <span ng-repeat="prod in items.production_companies">{{prod.name}}<span ng-show=" !$last">, 
+           </span>
+           </span>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
 	<table style="width:100%;">
 	<tr>
 	<td>	
-	<label>By person {{hideProfile}} {{hideSuggestions}} {{hideMovies}}</label>
+	<label>By person</label>
 	<input autocomplete="off" name="q" ng-model="query" ng-keyup="getSuggestions()" placeholder="Enter a key word for search persons"/>
 	</td>
 	<td>
@@ -68,7 +105,7 @@
 			</table>	
 		</div>
 
-		<h2>Movies {{hideMovies}}</h2>
+		<h2>Movies</h2>
 		<ul class="pagination">
 			<li ng-repeat="pg in pageIndexes">
 				<a  href="#" ng-click="getMoviesByKeyword(pg)" >{{pg}}</a>
@@ -88,7 +125,9 @@
 
 		<tr class="movies" ng-repeat="movie in movies | orderBy:predicate:reverse" >
 			<td ><img src="http://image.tmdb.org/t/p/w92{{movie.poster_path}}" /> </td>
-			<td ><a href="#{{movie.id}}">{{movie.title}}&nbsp;</a> </td>
+			<td ><a ng-click="getMovieDetails(movie.id);" href="#{{movie.id}}">{{movie.title}}&nbsp;{{count}}</a> 
+
+			</td>
 			<td ng-if="!hideProfile">{{movie.character}}</td>
 			<td >{{movie.release_date}} &nbsp;</td>
 		</div>

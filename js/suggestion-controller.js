@@ -1,6 +1,6 @@
 var app = angular.module("moviesApp",['ui.bootstrap']);
     app.controller("SuggestionController",
-        function ($scope,$http) {
+        function ($scope,$http,$modal,$log) {
 
              $scope.hideMovies=true;
              $scope.hideProfile=true;
@@ -71,6 +71,65 @@ var app = angular.module("moviesApp",['ui.bootstrap']);
                             $scope.personProfile = data;
                         
                 });                   
-            }    
+            }
+
+
+            $scope.items = ['item1', 'item2', 'item3'];
+
+              
+
+            $scope.getMovieDetails = function (movieId,size) {
+                      $http({
+                            method: 'GET',
+                            url: "/query_movie_details.php?id="+movieId
+                        }
+                        ).success(function(data) {
+
+                            $scope.movieDetails = data;
+                            $log.info('Details: '+data);
+
+                            var modalInstance = $modal.open({
+                              templateUrl: 'myModalContent.html',
+                              controller: ModalInstanceCtrl,
+                              size: size,
+                              resolve: {
+                                items: function () {
+                                    return data;
+                                }                   
+                              }
+                            });
+                            $log.info('open');
+
+                            modalInstance.result.then(function (selectedItem) {
+                              $scope.selected = selectedItem;
+                            }, function () {
+                              $log.info('Modal dismissed at: ' + new Date());
+                            });    
+
+
+                            return 
+                        }); 
+                    }
+
         }
     );
+
+
+
+
+// Please note that $modalInstance represents a modal window (instance) dependency.
+// It is not the same as the $modal service used above.
+
+var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
+
+  $scope.items = items;  
+
+  $scope.ok = function () {
+     console.log("ok 2");
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
