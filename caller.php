@@ -1,5 +1,7 @@
-
 <?php
+/*
+  Use CURL for call the API methods
+ */
  
 class Caller{
 

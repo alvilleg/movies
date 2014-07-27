@@ -1,3 +1,8 @@
+<!--
+    Main page for movie search
+-->    
+
+
 <!DOCTYPE html>
 <html ng-app="movieApp">
 
@@ -167,9 +172,9 @@
             </table>    
         </div>
 
-        <h2>Movies</h2>
+        <h2>Movies </h2>
         
-        <ul class="pagination">
+        <ul ng-if="!selectedProfile.id" class="pagination">
             <li ng-repeat="pg in pageIndexes">
                 <a  href="#" ng-click="getMoviesByKeyword(pg)" >{{pg}}</a>
             </li>

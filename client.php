@@ -1,5 +1,7 @@
 <?php
-	/*Client for the themoviedb */
+/*
+	Client for the themoviedb API
+*/
 class Client{
 
 	function __construct(){
