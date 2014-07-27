@@ -40,6 +40,11 @@ app.controller('MainCtrl', function($scope,$http,$log,$modal) {
     });
   };
   
+  $scope.initSelectedNumber = function(id_, name_){
+    $scope.selectedNumber = {id:id_,name:name_};
+    return $scope.showMovies();
+  };
+
   $scope.setValue = function () {
     $scope.selectedNumber = { num: 'seven' };
   };
@@ -66,7 +71,7 @@ app.controller('MainCtrl', function($scope,$http,$log,$modal) {
                   return;
                 }
                 $scope.showError="";
-                
+
                 $scope.hideProfile =false;
                 $scope.hideMovies =false;  
                 $http({
@@ -110,8 +115,8 @@ app.controller('MainCtrl', function($scope,$http,$log,$modal) {
                             });
                             $log.info('open');
 
-                            modalInstance.result.then(function (selectedItem) {
-                              $scope.selected = selectedItem;
+                            modalInstance.result.then(function (id,name) {
+                               $scope.initSelectedNumber(id,name);
                             }, function () {
                               $log.info('Modal dismissed at: ' + new Date());
                             });    
@@ -162,8 +167,12 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
   $scope.items = items;  
 
   $scope.ok = function () {
-     console.log("ok 2");
-    $modalInstance.close();
+    console.log("ok 2");
+    $modalInstance.dismiss();
+  };
+
+  $scope.close = function (id,name) {
+    $modalInstance.close(id,name);
   };
 
   $scope.cancel = function () {

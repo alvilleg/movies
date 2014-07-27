@@ -40,23 +40,25 @@ class Client{
 		$caller = new caller();
 		$req_data =  'api_key='.$this->api_key; //.'&page=5';
 		$result = $caller->doGet($url,$req_data);
+		//
+		$credits = $this->get_movie_credits($id);
+		$credits_obj= json_decode($credits);
+		//
+		$movie_obj = json_decode($result);
+		
+		
+		$movie_obj->credits=$credits_obj;
+		return json_encode($movie_obj);
+	}
+
+	function get_movie_credits($id){
+		$url = "http://api.themoviedb.org/3/movie/".$id."/credits";
+		$caller = new caller();
+		$req_data =  'api_key='.$this->api_key; //.'&page=5';
+		$result = $caller->doGet($url,$req_data);
 		return $result;
 	}
 
-
-	function get_actor_details_URL($movie){
-		
-	}
-	
-	
-
-	function get_movie($movieId){
-
-	}
-
-	function get_movies_by_director($keyword){
-
-	}
 
 	function get_persons($keyword){
 		$url = "http://api.themoviedb.org/3/search/person";
@@ -81,12 +83,6 @@ class Client{
 		$result = $caller->doGet($url,$req_data);
 		return $result;
 	}	
-
-
-
-	function sort_by($movies,$att,$desc){
-		return $movies;
-	}
 
 	function set_api_key($api_key){
     	$this->api_key = $api_key;

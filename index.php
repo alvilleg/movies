@@ -60,7 +60,14 @@
             </div>        
         </section>    
     </header>   
-
+    <!-- -->
+    <?php
+        $id = $_GET["id"];
+        $name = $_GET["name"];
+        if($id){
+            echo '<span ng-init="initSelectedNumber('.$id.',\''.$name.'\') ">';
+        }
+    ?>
     <!-- -->
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
@@ -86,6 +93,14 @@
            <span ng-repeat="prod in items.production_companies">{{prod.name}}<span ng-show=" !$last">, 
            </span>
            </span>
+           <br/>
+           <br/>
+           <b>Cast:</b> 
+           <span ng-repeat="cast in items.credits.cast"><a href="#" ng-click="close(cast.id,cast.name)">{{cast.name}}<span ng-show=" !$last">, 
+           </span>
+           </span> 
+
+           
 
         </div>
         <div class="modal-footer">
@@ -98,7 +113,7 @@
     <table style="width:100%;padding-bottom:3em;">
         <tr>
             <td>
-                <label>By person</label>
+                <label>By person </label>
             </td>
             <td>   
                 <input class='typeahead' type="text" sf-typeahead options="exampleOptions" 
@@ -113,7 +128,14 @@
             <td >    
                     <input class='typeahead' autocomplete="off" ng-init="c=0;" name="qm" ng-model="queryMovies" 
                            ng-keyup="$event.keyCode==13? getMoviesByKeyword(1): null" placeholder="Enter a key word for search movies"/>
-                    <span>Press Enter to execute the search </span>
+                    <br/>
+
+
+            </td>
+        </tr>
+        <tr>    
+            <td colspan="2">
+                <span>Press Enter to execute the search </span>
             </td>
         </tr>
     </table>
@@ -125,11 +147,11 @@
                 <tr><td style="width:20em;">
             <img ng-if="selectedProfile.profile_path" src="http://image.tmdb.org/t/p/w92{{selectedProfile.profile_path}}" />
             <br>
-            <span >Name:</span> {{selectedProfile.name}}
+            <h3> {{selectedProfile.name}}</h3>
+            
+            {{selectedProfile.place_of_birth}}
             <br>
-            <span >Place of birth:</span> {{selectedProfile.place_of_birth}}
-            <br>
-            <span >Birthday: </span>{{selectedProfile.birthday}}
+            {{selectedProfile.birthday}}
             <br>
             </td>
             <td>
@@ -144,7 +166,6 @@
             <li ng-repeat="pg in pageIndexes">
                 <a  href="#" ng-click="getMoviesByKeyword(pg)" >{{pg}}</a>
             </li>
-            
         </ul>
         
         <table class="table table-striped">
@@ -158,7 +179,7 @@
             <tr>
 
             <tr class="movies" ng-repeat="movie in movies | orderBy:predicate:reverse" >
-                <td ><img ng-if="movie.poster_path" src="http://image.tmdb.org/t/p/w92{{movie.poster_path}}" /> </td>
+                <td ><img ng-click="getMovieDetails(movie.id);" ng-if="movie.poster_path" src="http://image.tmdb.org/t/p/w92{{movie.poster_path}}" /> </td>
                 <td ><a ng-click="getMovieDetails(movie.id);" href="#{{movie.id}}">{{movie.title}}&nbsp;{{count}}</a> 
 
                 </td>
