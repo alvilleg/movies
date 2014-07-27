@@ -8,7 +8,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <title>Movie Search</title>
+    <title>Movie Search </title>
     <link rel="stylesheet" href="./css/style.css">
 
     <link href="./css/bootstrap.min.css" rel="stylesheet" />
@@ -66,13 +66,7 @@
         </section>    
     </header>   
     <!-- -->
-    <?php
-        $id = $_GET["id"];
-        $name = $_GET["name"];
-        if($id){
-            echo '<span ng-init="initSelectedNumber('.$id.',\''.$name.'\') ">';
-        }
-    ?>
+    
     <!-- -->
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
