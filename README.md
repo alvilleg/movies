@@ -10,7 +10,9 @@ The application was created in PHP using AngularJS and bootstrap
 It's running in http://alde-movie-search.herokuapp.com/
 
 
-### Main page: [index.php](./index.php)
+### Main page: 
+[index.php](./index.php)
+
 ### API calls: 
  * Wrap api calls: [client.php](./client.php)
  * Use curl libray to execute the POST or GET methods: [caller.php](./caller.php)
