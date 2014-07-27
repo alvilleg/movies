@@ -5,7 +5,9 @@ Movie search app:
 
 Search actors and movies using the http://www.themoviedb.org/ APIs
 
-The app is running in http://alde-movie-search.herokuapp.com/
+The application was created in PHP using AngularJS and bootstrap
+
+It's running in http://alde-movie-search.herokuapp.com/
 
 
 ### Main page: [index.php](./index.php)
@@ -15,7 +17,7 @@ The app is running in http://alde-movie-search.herokuapp.com/
   
  
 ### AngularJS Controller
- [app.js](./js/app.js)
+  Ajax calls and model updates: [app.js](./js/app.js)
 
 ### API calls
 These are used for AJAX calls:
