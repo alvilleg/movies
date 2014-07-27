@@ -6,6 +6,7 @@ class Client{
 
 	function __construct(){
   	}
+
 	// Gets a list of movies with the keywork,
 	// this return the first page, and the number of pages
 	// also number of results by page
@@ -36,7 +37,7 @@ class Client{
 	}
 	
 
-	// return the movie poster URL
+	// returns movie details
 	function get_movie_details($id){
 		$url = "http://api.themoviedb.org/3/movie/".$id;
 		$caller = new caller();
@@ -53,6 +54,7 @@ class Client{
 		return json_encode($movie_obj);
 	}
 
+	// returns movie credits
 	function get_movie_credits($id){
 		$url = "http://api.themoviedb.org/3/movie/".$id."/credits";
 		$caller = new caller();
@@ -61,7 +63,7 @@ class Client{
 		return $result;
 	}
 
-
+	//returns persons for keyword
 	function get_persons($keyword){
 		$url = "http://api.themoviedb.org/3/search/person";
 		$caller = new caller();
@@ -70,6 +72,7 @@ class Client{
 		return $result;
 	}	
 
+	//returns the movies a person has acted
 	function get_person_movies($id){
 		$url = "http://api.themoviedb.org/3/person/".$id."/movie_credits";
 		$caller = new caller();
@@ -78,6 +81,8 @@ class Client{
 		return $result;
 	}	
 
+	//returns the persons profile: biography
+	
 	function get_person_profile($id){
 		$url = "http://api.themoviedb.org/3/person/".$id;
 		$caller = new caller();
