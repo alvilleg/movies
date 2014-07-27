@@ -96,10 +96,17 @@
            <br/>
            <br/>
            <b>Cast:</b> 
-           <span ng-repeat="cast in items.credits.cast"><a href="#" ng-click="close(cast.id,cast.name)">{{cast.name}}<span ng-show=" !$last">, 
+           <span ng-repeat="cast in items.credits.cast"><a href="#" ng-click="close(cast.id,cast.name)">{{cast.name}}</a><span ng-show=" !$last">, 
            </span>
            </span> 
 
+
+            <br/>
+           <br/>
+           <b>Crew:</b> 
+           <span ng-repeat="c in items.credits.crew">{{c.job}}: <a href="#" ng-click="close(c.id,c.name)">{{c.name}}</a><span ng-show=" !$last">, 
+           </span>
+           </span>
            
 
         </div>

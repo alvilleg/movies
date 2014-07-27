@@ -42,6 +42,9 @@ app.controller('MainCtrl', function($scope,$http,$log,$modal) {
   
   $scope.initSelectedNumber = function(id_, name_){
     $scope.selectedNumber = {id:id_,name:name_};
+    $scope.predicate = 'release_date';
+    $scope.reverse = false;
+    
     return $scope.showMovies();
   };
 
@@ -128,6 +131,10 @@ app.controller('MainCtrl', function($scope,$http,$log,$modal) {
 
 
       $scope.getMoviesByKeyword = function(page){
+                    if(!$scope.queryMovies){
+                      $scope.showError="";
+                      return;
+                    }
                     $scope.hideMovies=false;
                     $scope.hideProfile=true;
                     $scope.selectedNumber = '';
