@@ -5,9 +5,20 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <script src="./js/angular.js"></script>
-    <script src="./js/ui-bootstrap-tpls.min.js"></script>
+    <script src="./js/jquery-1.9.1.js"></script>
+    <script  src="./js/angular.js" ></script>
+    <script src="./js/ui-bootstrap-tpls.min.js"></script> 
+
+    <script  src="./js/typeahead.bundle.min.js"></script>
+    <script  src="./js/bloodhound.min.js"></script>
+    <script src="./js/angular-typeahead.js"></script>
+    
+    
+
     <script src="./js/suggestion-controller.js"></script>
+
+
+    <link rel="stylesheet" href="./css/style.css">
     <link href="./css/bootstrap.min.css" rel="stylesheet" />
   
     <style>

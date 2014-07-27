@@ -75,9 +75,7 @@ var app = angular.module("moviesApp",['ui.bootstrap']);
 
 
             $scope.items = ['item1', 'item2', 'item3'];
-
-              
-
+            
             $scope.getMovieDetails = function (movieId,size) {
                       $http({
                             method: 'GET',
@@ -111,6 +109,53 @@ var app = angular.module("moviesApp",['ui.bootstrap']);
                         }); 
                     }
 
+
+
+               $scope.selectedNumber = 'X';
+  
+  // instantiate the bloodhound suggestion engine
+  var numbers = new Bloodhound({
+    datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.num); },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local:[{num:"alde",name:"alde"}]
+    /*remote: {
+        url: '/query_person.php?qa=y',
+        replace: function(url, uriEncodedQuery) {
+          var newUrl = url + '&q=' + uriEncodedQuery;
+          return newUrl;
+        },
+        filter: function (movies) {
+            return $.map(movies.results, function (movie) {
+                return movie;
+            });
+        }
+    }*/
+  });
+   
+  // initialize the bloodhound suggestion engine
+  numbers.initialize();
+  
+  $scope.numbers=numbers;
+
+  $scope.numbersDataset = {
+    displayKey: 'name',
+    source: numbers.ttAdapter()
+  };
+  
+  $scope.addValue = function () {
+    numbers.add({
+      num: 'twenty'
+    });
+  };
+  
+  $scope.setValue = function () {
+    $scope.selectedNumber = { num: 'seven' };
+  };
+  
+  $scope.clearValue = function () {
+    $scope.selectedNumber = null;
+  };
+
         }
     );
 
@@ -133,3 +178,65 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
     $modalInstance.dismiss('cancel');
   };
 };
+
+
+
+
+app.controller('MainCtrl', function($scope) {
+  
+  $scope.selectedNumber = 'X';
+  
+  // instantiate the bloodhound suggestion engine
+  var numbers = new Bloodhound({
+    datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.num); },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+        url: '/query_person.php?qa=y',
+        replace: function(url, uriEncodedQuery) {
+          var newUrl = url + '&q=' + uriEncodedQuery;
+          return newUrl;
+        },
+        filter: function (movies) {
+            return $.map(movies.results, function (movie) {
+                return movie;
+            });
+        }
+    }
+  });
+   
+  // initialize the bloodhound suggestion engine
+  numbers.initialize();
+  
+  $scope.numbers=numbers;
+
+  $scope.numbersDataset = {
+    displayKey: 'name',
+    source: numbers.ttAdapter()
+  };
+  
+  $scope.addValue = function () {
+    numbers.add({
+      num: 'twenty'
+    });
+  };
+  
+  $scope.setValue = function () {
+    $scope.selectedNumber = { num: 'seven' };
+  };
+  
+  $scope.clearValue = function () {
+    $scope.selectedNumber = null;
+  };
+  
+  // Typeahead options object
+  $scope.exampleOptions = {
+    highlight: true
+  };
+  
+  $scope.exampleOptionsNonEditable = {
+    highlight: true,
+    editable: false // the new feature
+  };
+  
+});
+

@@ -33,10 +33,6 @@
             margin-top:5px;
             height: 30px;
         }    
-
-        span.error{
-            color: #a94442;
-        }
     </style>
 
   </head>
@@ -93,9 +89,9 @@
         </div>
     </script>
 
-    <h1>Movie search</h1>
+
     <!-- -->
-    <table style="width:100%;padding-bottom:3em;">
+    <table style="width:100%;">
         <tr>
             <td>
                 <label>By person</label>
@@ -103,7 +99,7 @@
             <td>   
                 <input class='typeahead' type="text" sf-typeahead options="exampleOptions" 
                 datasets="numbersDataset" ng-model="selectedNumber" ng-keyup="$event.keyCode == 13? showMovies() : null ">
-                 <span class="error" >{{showError}}</span>
+
             </td>
         </tr>
         <tr>
@@ -117,8 +113,7 @@
             </td>
         </tr>
     </table>
-    <br>
-    <br>
+
     <div ng-init="predicate = 'release_date';" ng-hide="hideMovies" >
         <div ng-if="selectedProfile" ng-hide="hideProfile" id="profile">
             <table>
